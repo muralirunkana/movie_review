@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Reviews</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Movie Reviews</h1>
+        <a href="/add" class="add-button">+ Add Review</a>
+        <div class="reviews">
+            {% for review in reviews %}
+            <div class="card">
+                <h2>{{ review.title }}</h2>
+                <p><strong>Description:</strong> {{ review.description }}</p>
+                <p><strong>Review:</strong> {{ review.review }}</p> 
+                <p><strong>Rating:</strong> {{ review.rating }}</p>
+                <a href="/edit/{{ review._id }}" class="edit">✏️ Edit</a> 
+                <a href="/delete/{{ review._id }}" class="delete">Delete</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+/* Reset & Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+    margin-bottom: 20px;
+    color: #222;
+    font-size: 32px;
+}
+
+/* Forms */
+form input[type="text"],
+form textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+form input[type="text"]:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    background-color: #f0f8ff;
+}
+
+/* Buttons */
+button,
+.add-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+button:hover,
+.add-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.03);
+}
+
+/* Add Review Button */
+.add-button {
+    background-color: #28a745;
+    margin-bottom: 20px;
+}
+
+.add-button:hover {
+    background-color: #1e7e34;
+}
+
+/* Cards for Reviews */
+.reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background: #fefefe;
+    padding: 20px;
+    border-left: 6px solid #007bff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+/* Delete Link */
+.delete {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.delete:hover {
+    background-color: #a71d2a;
+    transform: scale(1.05);
+}
+
+/* Back link */
+a[href="/"] {
+    display: inline-block;
+    margin-top: 20px;
+    color: #555;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+a[href="/"]:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+select {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+select:focus {
+    border-color: #007bff;
+    background-color: #f0f8ff;
+}
+
+.edit {
+    position: absolute;
+    margin-right: 15px;
+    top: 15px;
+    right: 80px;
+    background: #ffc107;
+    color: black;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.edit:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
