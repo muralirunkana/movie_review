@@ -11,12 +11,12 @@
         <div class="reviews">
             {% for review in reviews %}
             <div class="card">
-                <h2>{{ review.title }}</h2>
-                <p><strong>Description:</strong> {{ review.description }}</p>
-                <p><strong>Review:</strong> {{ review.review }}</p> 
-                <p><strong>Rating:</strong> {{ review.rating }}</p>
-                <a href="/edit/{{ review._id }}" class="edit">✏️ Edit</a> 
-                <a href="/delete/{{ review._id }}" class="delete">Delete</a>
+                <h2>{{ review[1] }}</h2>
+                <p><strong>Description:</strong> {{ review[2] }}</p>
+                <p><strong>Review:</strong> {{ review[3] }}</p> 
+                <p><strong>Rating:</strong> {{ "⭐" * review[4] }}</p>
+                <a href="/edit/{{ review[0] }}" class="edit">✏️ Edit</a> 
+                <a href="/delete/{{ review[0] }}" class="delete">Delete</a>
             </div>
             {% endfor %}
         </div>

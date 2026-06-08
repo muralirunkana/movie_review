@@ -8,17 +8,17 @@
     <div class="container">
         <h1>✏️ Edit Movie Review</h1>
         <form method="POST">
-            <input type="text" name="title" value="{{ review.title }}" required><br>
-            <textarea name="description" required>{{ review.description }}</textarea><br>
-            <textarea name="review" required>{{ review.review }}</textarea><br>
+            <input type="text" name="title" value="{{ review[1] }}" required><br>
+            <textarea name="description" required>{{ review[2] }}</textarea><br>
+            <textarea name="review" required>{{ review[3] }}</textarea><br>
 
             <label for="rating">⭐ Rating:</label>
             <select name="rating" required>
-                <option value="⭐" {% if review.rating == "⭐" %}selected{% endif %}>⭐</option>
-                <option value="⭐⭐" {% if review.rating == "⭐⭐" %}selected{% endif %}>⭐⭐</option>
-                <option value="⭐⭐⭐" {% if review.rating == "⭐⭐⭐" %}selected{% endif %}>⭐⭐⭐</option>
-                <option value="⭐⭐⭐⭐" {% if review.rating == "⭐⭐⭐⭐" %}selected{% endif %}>⭐⭐⭐⭐</option>
-                <option value="⭐⭐⭐⭐⭐" {% if review.rating == "⭐⭐⭐⭐⭐" %}selected{% endif %}>⭐⭐⭐⭐⭐</option>
+                <option value="1" {% if review[4] == 1 %}selected{% endif %}>⭐</option>
+                <option value="2" {% if review[4] == 2 %}selected{% endif %}>⭐⭐</option>
+                <option value="3" {% if review[4] == 3 %}selected{% endif %}>⭐⭐⭐</option>
+                <option value="4" {% if review[4] == 4 %}selected{% endif %}>⭐⭐⭐⭐</option>
+                <option value="5" {% if review[4] == 5 %}selected{% endif %}>⭐⭐⭐⭐⭐</option>
             </select><br>
 
             <button type="submit">Update</button>
