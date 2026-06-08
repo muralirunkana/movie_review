@@ -1,21 +1,23 @@
 from flask import Flask, render_template, request, redirect
-from pymongo import MongoClient
-from bson.objectid import ObjectId
+
+import mysql.connector
+
 
 
 app = Flask(__name__)
-client = MongoClient("mongodb+srv://murali:murali2003@moviereviewdb.jdubn1d.mongodb.net/movie_db?retryWrites=true&w=majority&appName=MovieReviewDB")
-db = client.movie_db
-collection = db.reviews
 
-# MongoDB connection
-# client = MongoClient("mongodb://localhost:27017/")
-# db = client["movie_db"]
-# collection = db["reviews"]
+conn=mysql.connector.connect(
+    host='localhost',
+    user='root',
+    password="your_password",
+    database="movie_review_db"
+)
+cursor=conn.cursor()
 
 @app.route("/")
 def index():
-    reviews = list(collection.find())
+    cursor.execute("select * from movie_reviews")
+    reviews=cursor.fetchall()
     return render_template("index.html", reviews=reviews)
 
 
@@ -27,26 +29,28 @@ def add_review():
         review = request.form.get("review")
         rating = request.form.get("rating")  
         
-        collection.insert_one({
-            "title": title,
-            "description": description,
-            "review": review,
-            "rating": rating
-        })
+        cursor.execute(
+          
+               "insert into movie_reviews(title,description,review,rating) values(%s,%s,%s,%s)",(title,description,review,rating)
+        )
+        conn.commit()
         return redirect("/")
     
     return render_template("add.html")
 
 
-@app.route("/delete/<id>")
+@app.route("/delete/<int:id>")
 def delete_review(id):
-    collection.delete_one({"_id": ObjectId(id)})
+    cursor.execute(
+        "delete from movie_reviews where id=%s",(id,)
+    )
+    conn.commit()
     return redirect("/")
 
-@app.route("/edit/<id>", methods=["GET", "POST"])
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit_review(id):
-    from bson.objectid import ObjectId
-    review = collection.find_one({"_id": ObjectId(id)})
+    cursor.execute("select * from movie_reviews where id=%s",(id,) )
+    review = cursor.fetchone()
 
     if request.method == "POST":
         title = request.form.get("title")
@@ -54,15 +58,8 @@ def edit_review(id):
         review_text = request.form.get("review")
         rating = request.form.get("rating")
         
-        collection.update_one(
-            {"_id": ObjectId(id)},
-            {"$set": {
-                "title": title,
-                "description": description,
-                "review": review_text,
-                "rating": rating
-            }}
-        )
+        cursor.execute("update movie_reviews set title=%s,description=%s,review=%s,rating=%s where id=%s",(title,description,review_text,rating,id))
+        conn.commit()
         return redirect("/")
 
     return render_template("edit.html", review=review)
